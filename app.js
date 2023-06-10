@@ -14,23 +14,6 @@
         }
 
     ]
-
-    function displayTask(){
-        let html=``
-        task.foreach((task,index)=>{
-        html += `
-        <div class="tasklist">
-        <span>${task.title}</span>
-        <span>${task.description}</span>
-        <span>${task.start}</span>
-        <span>${task.completionDate}</span>
-        <button onClick="deleteTask(${index})"> Delete </button>
-      </div>
-      `
-        })
-    
-        todo.innerHTML+=html;
-    }
     
     const tasklist = document.getElementById('tasklist');
     const li = document.createElement('li');
