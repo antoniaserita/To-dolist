@@ -1,56 +1,55 @@
     const titleInput = document.querySelector('#title')
-    const descriptionInput = document.querySelector('.description')
-    const startInput = document.getElementById('start')
+    const descriptionInput= document.querySelector('.description')
+    const startInput= document.getElementById('start')
     const completionDateInput = document.getElementById('completionDate')
-    const todo = document.getElementById('todo')
-    const btn = document.querySelector('#addBtn')
+    const addBtn = document.querySelector('#addBtn')
+    const todo= document.getElementById('todo')
 
-    const task=[
-        {
-            title:"cleaning",
-            description:"neighbourhood",
-            start:"12/01/2022",
-            completionDate:"13/01/2022"
-        }
+    const todos=[]
 
-    ]
-    
-    const tasklist = document.getElementById('tasklist');
-    const li = document.createElement('li');
-    li.innerHTML = `
-    <input type="checkbox">
-    <span>${task.title}</span>
-    <span>${task.description}</span>
-    <span>${task.start}</span>
-    <span>${task.completionDate}</span>
-    <button class="delete-btn">Delete</button>
-    `;
-    tasklist.appendChild(li);
-
-    function addTask(){
-        const newTask={
-            title:titleInput.value,
-            description:descriptionInput.value,
-            start:startInput.value,
-            completionDate:completionDateInput.value,
-        }
-      
-        task.push(newTask)
-        displayTask()
-      }
-      
-    const checkbox = li.querySelector("input[type='checkbox]");
-    checkbox.addEventListener("change", toggleComplete);
-    li.querySelector(".delete-btn").addEventListener("click", deleteTask);
-    btn.addEventListener('Click', addTask)
-    
-    function toggleComplete() {
-        const listItem = this.parentnode;
-        listItem.ClassList.toggle ("completed");
+// Adding a Todolist
+function addTodo(){
+    const singleTodo={
+        id:todos.length+1,
+        title:titleInput.value,
+        description:descriptionInput.value,
+        start:startInput.value,
+        completed:false,
+        completionDate:completionDateInput.value
     }
-    function deleteTask(index){
-        task.splice(index,1)
-        displayTask()
-    }
+    todos.push(singleTodo)
+    displayTodos()
+    console.log(todos);
+}
 
-    document.getElementById("taskForm").addEventListener("submit", addTask);
+addBtn.addEventListener('click', addTodo)
+
+displayTodos()
+
+//displaying a Todolist
+function displayTodos(){
+    let html=''
+    todos.forEach((todo, id)=>{
+        html +=`
+        <div class="item">
+        <div class="tasklist">
+          <h2>${title.input}</h2>
+          <p>${description.input}Todo Desciption</p>
+          <p>${start.input}4/10/2022</p>
+          <p>${completionDate.input}9/10/2022</p>
+          <button onClick="deleteTodo(${id})">Delete</button>
+        </div>
+        </div>
+        `
+    })
+
+    app.innerHTML=html
+}
+
+//deleting a Todolist
+function deleteTodo(id){
+    todos.splice(id,1)
+    displayTodos()
+}
+  
+    
